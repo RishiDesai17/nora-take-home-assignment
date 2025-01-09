@@ -1,6 +1,17 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
+    "strict": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+      "tailwind.config": [
+        "./tailwind.config.js"
+      ]
+    }
   }
 }
