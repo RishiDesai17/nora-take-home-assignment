@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef } from 'react';
-import { FlatList, ActivityIndicator, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import axios from 'axios';
 import { Box } from "@/gluestack/ui/box";
 
@@ -8,9 +8,10 @@ import { throttle } from 'lodash';
 import { MUSIC_SERVICE_BASE_URL, TRACK_COUNT_LIMIT_PER_CALL, THROTTLE_DELAY_MILLISECONDS } from '@/constants';
 
 import SearchBar from '@/components/SearchBar';
-import TrackTile from '@/components/TrackTile';
+import TrackList from '@/components/TrackList';
 
 const SearchScreen = ({ navigation }: any) => {
+  const [searchQuery, setSearchQuery] = useState("");
   const [tracks, setTracks] = useState<Track[]>([]);
   const [loading, setLoading] = useState(false);
   const limit = useRef(TRACK_COUNT_LIMIT_PER_CALL);
@@ -23,11 +24,13 @@ const SearchScreen = ({ navigation }: any) => {
         setTracks([]);
         return;
       }
+
       setLoading(true);
-      let index = tracks.length - 1;
+      let index = tracks.length;
       if (newQuery) {
         index = 0;
       }
+      
       const response = await axios.get(`${MUSIC_SERVICE_BASE_URL}/search?q=${trimmedQuery}&index=${index}&limit=${limit.current}`);
       totalQueryResults.current = response.data.total;
       if (newQuery) {
@@ -38,6 +41,7 @@ const SearchScreen = ({ navigation }: any) => {
       }
     } catch (error) {
       console.error(error);
+      alert("Unable to fetch songs, Please try again later");
     }
     setLoading(false);
   };
@@ -49,18 +53,24 @@ const SearchScreen = ({ navigation }: any) => {
     []
   );
 
+  const handleEndReached = () => {
+    if (tracks.length < totalQueryResults.current) {
+      fetchData(searchQuery, false);
+    }
+  };
+
   return (
     <Box style={styles.container}>
-
-      <SearchBar handleSearch={handleSearch} />
-
-      <FlatList
-        data={tracks}
-        renderItem={({ item: track } : { item: Track }) => (
-          <TrackTile navigation={navigation} track={track} />
-        )}
-        keyExtractor={(item) => item.id.toString()}
-        ListFooterComponent={loading ? <ActivityIndicator size="small" /> : null}
+      <SearchBar
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        handleSearch={handleSearch}
+      />
+      <TrackList
+        tracks={tracks}
+        loading={loading}
+        handleEndReached={handleEndReached}
+        navigation={navigation}
       />
     </Box>
   );

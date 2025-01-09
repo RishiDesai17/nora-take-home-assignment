@@ -40,7 +40,8 @@ const PlayPreview = ({ previewUrl }: PlayPreviewProps) => {
             }
           });
         } catch (error) {
-          console.error('Error loading audio:', error);
+          console.error(error);
+          alert("Error playing the audio preview, Please try again later");
         }
       } else {
         await sound.current.playAsync();

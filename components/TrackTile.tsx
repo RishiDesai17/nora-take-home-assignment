@@ -8,7 +8,7 @@ type TrackTileProps = {
 
 const TrackTile = ({ navigation, track }: TrackTileProps) => {
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('Track Details', { track })} activeOpacity={0.7} style={{ margin: 5 }}>
+    <TouchableOpacity onPress={() => navigation.navigate('TrackDetails', { track })} activeOpacity={0.7} style={{ margin: 5 }}>
       <Box style={styles.container}>
         <Image source={{ uri: track.album.cover }} style={styles.image} />
         <Box style={{ marginLeft: 20 }}>

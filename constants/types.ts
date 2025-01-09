@@ -10,7 +10,7 @@ type Track = {
   explicit_lyrics: boolean;
   explicit_content_lyrics: number;
   explicit_content_cover: number;
-  preview: string;
+  preview: string | null;
   md5_image: string;
   artist: Artist;
   album: Album;

@@ -9,7 +9,7 @@ const AppNavigator = () => (
     <NavigationContainer>
         <Stack.Navigator initialRouteName="Search" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Search" component={SearchScreen} />
-            <Stack.Screen name="Track Details" component={TrackDetailsScreen} />
+            <Stack.Screen name="TrackDetails" component={TrackDetailsScreen} />
         </Stack.Navigator>
     </NavigationContainer>
 );

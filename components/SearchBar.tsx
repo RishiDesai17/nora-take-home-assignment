@@ -1,15 +1,16 @@
-import { useState } from 'react';
-import { TextInput, Text, StyleSheet } from "react-native";
+import { Dispatch, SetStateAction } from 'react';
+import { StyleSheet } from "react-native";
 import { DebouncedFuncLeading } from 'lodash';
 import { Box } from '@/gluestack/ui/box';
 import { Input, InputField } from '@/gluestack/ui/input';
 
-type Props = {
+type SearchBarProps = {
+  searchQuery: string;
+  setSearchQuery: Dispatch<SetStateAction<string>>,
   handleSearch: DebouncedFuncLeading<(query: string) => void>
 }
 
-const SearchBar = ({ handleSearch }: Props) => {
-  const [searchQuery, setSearchQuery] = useState("");
+const SearchBar = ({ searchQuery, setSearchQuery, handleSearch } : SearchBarProps) => {
 
   return (
     <Box style={styles.container}>
@@ -36,8 +37,8 @@ const styles = StyleSheet.create({
     padding: 15
   },
   inputField: {
-    backgroundColor: '#666666', // Input field background for a subtle contrast
-    color: '#ffffff', // White text for better visibility
+    backgroundColor: '#666666',
+    color: '#ffffff',
     borderRadius: 10,
     fontSize: 18,
     height: 55,
