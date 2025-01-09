@@ -1,17 +1,20 @@
 import { GluestackUIProvider } from "@/gluestack/ui/gluestack-ui-provider";
 import "@/global.css";
 import { View, StyleSheet } from "react-native";
-import AppNavigator from './navigation/AppNavigator';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import AppNavigator from './navigation/AppNavigator';
+import { Provider } from '@/context/FavoritesContext';
 
 const App = () => {
   return (
     <GluestackUIProvider>
-      <SafeAreaView style={styles.safeAreaView}>
-        <View style={styles.viewBox}>
-          <AppNavigator />
-        </View>
-      </SafeAreaView>
+      <Provider>
+        <SafeAreaView style={styles.safeAreaView}>
+          <View style={styles.viewBox}>
+            <AppNavigator />
+          </View>
+        </SafeAreaView>
+      </Provider>
     </GluestackUIProvider>
   );
 }

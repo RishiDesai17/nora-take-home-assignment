@@ -17,11 +17,11 @@ export const useFavorites = () => {
   return context;
 };
 
-type FavoritesProviderProps = {
+type ProviderProps = {
   children: ReactNode;
 };
 
-export const FavoritesProvider: React.FC<FavoritesProviderProps> = ({ children }) => {
+export const Provider: React.FC<ProviderProps> = ({ children }) => {
   const [favorites, setFavorites] = useState<Set<number>>(new Set());
 
   const addFavorite = (trackId: number) => {

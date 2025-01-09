@@ -1,8 +1,9 @@
-import { Text, Image, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Box } from "@/gluestack/ui/box";
 import ArtistInfo from '@/components/ArtistInfo';
 import AlbumInfo from '@/components/AlbumInfo';
 import PlayPreview from '@/components/PlayPreview';
+import Favorite from '@/components/Favorite';
 
 type TrackDetailsProps = {
   route: any;
@@ -41,6 +42,10 @@ const TrackDetails = ({ route, navigation } : TrackDetailsProps) => {
         <AlbumInfo album={track.album} />
 
         <ArtistInfo artist={track.artist} />
+
+        <View style={styles.favoriteButtonContainer}>
+          <Favorite trackId={track.id} />
+        </View>
       </Box>
     </ScrollView>
   );
@@ -142,6 +147,12 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: '#1DB954',
     marginBottom: 20,
+  },
+  favoriteButtonContainer: {
+    position: 'absolute',
+    top: 30,
+    right: 20,
+    zIndex: 10,
   },
 });
 
