@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-type Props = {
+type AlbumInfoProps = {
   album: Album;
 };
 
-const AlbumInfo = ({ album }: Props) => {
+const AlbumInfo = ({ album }: AlbumInfoProps) => {
   return (
     <View style={styles.albumContainer}>
       <Text style={styles.albumTitle}>Album</Text>
@@ -18,7 +18,7 @@ const AlbumInfo = ({ album }: Props) => {
 const styles = StyleSheet.create({
   albumContainer: {
     alignItems: 'center',
-    marginTop: 15,
+    marginTop: 40,
     marginBottom: 50,
   },
   albumTitle: {

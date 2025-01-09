@@ -1,15 +1,15 @@
-import React from 'react';
 import { Text, Image, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Box } from "@/gluestack/ui/box";
 import ArtistInfo from '@/components/ArtistInfo';
 import AlbumInfo from '@/components/AlbumInfo';
+import PlayPreview from '@/components/PlayPreview';
 
-type Props = {
+type TrackDetailsProps = {
   route: any;
   navigation: any;
 };
 
-const TrackDetailsScreen = ({ route, navigation }: Props) => {
+const TrackDetails = ({ route, navigation } : TrackDetailsProps) => {
   const { track } = route.params;
 
   return (
@@ -35,6 +35,8 @@ const TrackDetailsScreen = ({ route, navigation }: Props) => {
             <Text style={styles.infoText}>{track.rank}</Text>
           </Box>
         </Box>
+
+        {track.preview && <PlayPreview previewUrl={track.preview} />}
 
         <AlbumInfo album={track.album} />
 
@@ -111,7 +113,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: '100%',
     marginTop: 10,
-    marginBottom: 25,
+    marginBottom: 15
   },
   infoContainer: {
     width: '45%',
@@ -143,4 +145,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TrackDetailsScreen;
+export default TrackDetails;

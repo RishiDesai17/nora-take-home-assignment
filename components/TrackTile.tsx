@@ -1,12 +1,12 @@
 import { Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { Box } from "@/gluestack/ui/box";
 
-type Props = {
+type TrackTileProps = {
   navigation: any;
   track: Track;
 }
 
-const TrackTile = ({ navigation, track }: Props) => {
+const TrackTile = ({ navigation, track }: TrackTileProps) => {
   return (
     <TouchableOpacity onPress={() => navigation.navigate('Track Details', { track })} activeOpacity={0.7} style={{ margin: 5 }}>
       <Box style={styles.container}>

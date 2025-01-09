@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, Linking } from 'react-native';
 
-type Props = {
+type ArtistInfoProps = {
   artist: Artist;
 };
 
-const ArtistInfo = ({ artist }: Props) => {
+const ArtistInfo = ({ artist }: ArtistInfoProps) => {
   return (
     <View style={styles.artistInfoContainer}>
       <Text style={styles.artistInfoTitle}>About the Artist:</Text>
